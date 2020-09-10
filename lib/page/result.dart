@@ -5,7 +5,7 @@ import 'content/processing_form.dart';
 import 'content/view_process.dart';
 
 class PageResult extends StatefulWidget {
-  final Map<String,String> data;
+  final Map<String, String> data;
 
   PageResult(this.data);
 
@@ -41,8 +41,8 @@ class _PageResultState extends State<PageResult>
               indicatorWeight: 3,
               tabs: _tabs
                   .map((e) => Tab(
-                text: e,
-              ))
+                        text: e,
+                      ))
                   .toList(),
             ),
             Expanded(

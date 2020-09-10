@@ -158,7 +158,7 @@ class ProcessingForm extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        width: 46,
+                        width: 50,
                         height: 22,
                         child: RaisedButton(
                           color: Color(0xff04be01),

@@ -16,7 +16,8 @@ class _PageFormState extends State<PageForm> {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 30),
-        child: Form(
+        height: MediaQuery.of(context).size.height,
+        child: SingleChildScrollView(child: Form(
           key: _formKey,
           child: Column(
             children: [
@@ -103,7 +104,7 @@ class _PageFormState extends State<PageForm> {
               )
             ],
           ),
-        ),
+        ),),
       ),
     );
   }
