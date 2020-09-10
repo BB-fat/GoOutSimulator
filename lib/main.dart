@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_out_simulator/page/form.dart';
 
-import 'page/result.dart';
+import 'page/index.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +17,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: PageResult(),
+      routes: {
+        "/":(context) => PageIndex(),
+//        "/":(context) => PageForm(),
+      },
+      initialRoute: "/",
     );
   }
 }

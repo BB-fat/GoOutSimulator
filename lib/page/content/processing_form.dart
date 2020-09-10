@@ -8,10 +8,14 @@ class ProcessingForm extends StatelessWidget {
   final TextStyle normalTextStyle =
       TextStyle(color: Color(0xffcecece), fontSize: 10);
 
+  final Map<String, String> data;
+
+  ProcessingForm(this.data);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xffcecece),
+      color: Color(0xffeeeeee),
       child: Column(
         children: [
           Stack(
@@ -40,48 +44,48 @@ class ProcessingForm extends StatelessWidget {
                         RichText(
                           text: TextSpan(children: [
                             TextSpan(
-                              text: "鞠欣诚",
+                              text: data["name"],
                               style: activeTextStyle,
                             ),
                             TextSpan(
-                                text: " 2020-09-10 08:14",
+                                text: " ${data["out_time"]}",
                                 style: normalTextStyle)
                           ]),
                         ),
                         Text(
-                          "姓名:鞠欣诚",
+                          "姓名:${data["name"]}",
                           style: normalTextStyle,
                         ),
                         Text(
-                          "学院:信息学院",
+                          "学院:${data["college"]}",
                           style: normalTextStyle,
                         ),
                         Text(
-                          "班级:计科17-3",
+                          "班级:${data["class"]}",
                           style: normalTextStyle,
                         ),
                         Text(
-                          "手机号:16619763047",
+                          "手机号:${data["phone"]}",
                           style: normalTextStyle,
                         ),
                         Text(
-                          "申请出校理由:办事",
+                          "申请出校理由:${data["reason"]}",
                           style: normalTextStyle,
                         ),
                         Text(
-                          "去往地点:石景山",
+                          "去往地点:${data["place"]}",
                           style: normalTextStyle,
                         ),
                         Text(
-                          "出校时间:2020-09-10 08:14",
+                          "出校时间:${data["out_time"]}",
                           style: normalTextStyle,
                         ),
                         Text(
-                          "返校时间:2020-09-10 08:14",
+                          "返校时间:${data["return_time"]}",
                           style: normalTextStyle,
                         ),
                         Text(
-                          "备注:无",
+                          "备注:${data["remark"]}",
                           style: normalTextStyle,
                         ),
                         Text(
@@ -148,7 +152,7 @@ class ProcessingForm extends StatelessWidget {
                             width: 10,
                           ),
                           Text(
-                            "王波",
+                            data["teacher"],
                             style: activeTextStyle,
                           ),
                         ],
@@ -186,13 +190,13 @@ class ProcessingForm extends StatelessWidget {
                             width: 10,
                           ),
                           Text(
-                            "2020-09-10 08:14",
+                            data["approve_time"],
                             style: normalTextStyle,
                           ),
                         ],
                       ),
                       Text(
-                        "用时30分钟",
+                        "用时${data["last_time"]}分钟",
                         style: normalTextStyle,
                       ),
                     ],

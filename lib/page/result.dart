@@ -5,6 +5,10 @@ import 'content/processing_form.dart';
 import 'content/view_process.dart';
 
 class PageResult extends StatefulWidget {
+  final Map<String,String> data;
+
+  PageResult(this.data);
+
   @override
   _PageResultState createState() => _PageResultState();
 }
@@ -45,7 +49,7 @@ class _PageResultState extends State<PageResult>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  ProcessingForm(),
+                  ProcessingForm(widget.data),
                   FormPreview(),
                   ViewProcess(),
                 ],
