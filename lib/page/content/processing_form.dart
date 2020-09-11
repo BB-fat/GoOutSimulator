@@ -161,6 +161,7 @@ class ProcessingForm extends StatelessWidget {
                         width: 50,
                         height: 22,
                         child: RaisedButton(
+                          padding: EdgeInsets.zero,
                           color: Color(0xff04be01),
                           textColor: Colors.white,
                           child: Text(
