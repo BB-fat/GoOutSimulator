@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class ProcessingForm extends StatelessWidget {
   final TextStyle activeTextStyle = TextStyle(
       color: Color(0xff32a0db),
-      fontSize: 10,
+      fontSize: 12,
       decoration: TextDecoration.underline);
   final TextStyle normalTextStyle =
-      TextStyle(color: Color(0xffcecece), fontSize: 10);
+      TextStyle(color: Color(0xffcecece), fontSize: 12);
+
+  final _nowDate = DateTime.now();
 
   final Map<String, String> data;
 
@@ -166,7 +168,7 @@ class ProcessingForm extends StatelessWidget {
                           textColor: Colors.white,
                           child: Text(
                             "回复",
-                            style: TextStyle(fontSize: 10),
+                            style: TextStyle(fontSize: 9),
                           ),
                           onPressed: () {},
                         ),
@@ -186,18 +188,21 @@ class ProcessingForm extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Text("已通过", style: normalTextStyle,),
+                          Text(
+                            "已通过",
+                            style: normalTextStyle,
+                          ),
                           SizedBox(
                             width: 10,
                           ),
                           Text(
-                            data["approve_time"],
+                            "${_nowDate.year}-${_nowDate.month}-${_nowDate.day} 06:${data["approve_time"]}",
                             style: normalTextStyle,
                           ),
                         ],
                       ),
                       Text(
-                        "用时${data["last_time"]}分钟",
+                        "用时${data["approve_time"]}分钟",
                         style: normalTextStyle,
                       ),
                     ],
@@ -205,7 +210,27 @@ class ProcessingForm extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
+          Expanded(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 46,
+                color: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                child: RaisedButton(
+                  child: Text(
+                    "后续处理",
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.normal),
+                  ),
+                  onPressed: () {},
+                ),
+              )
+            ],
+          ))
         ],
       ),
     );

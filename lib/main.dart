@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        "/":(context) => PageIndex(),
-//        "/":(context) => PageForm(),
+        // "/":(context) => PageIndex(),
+        "/": (context) => PageForm(),
       },
       initialRoute: "/",
     );
