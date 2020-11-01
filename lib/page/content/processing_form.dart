@@ -59,6 +59,10 @@ class ProcessingForm extends StatelessWidget {
                           style: normalTextStyle,
                         ),
                         Text(
+                          "学号:${data["sno"]}",
+                          style: normalTextStyle,
+                        ),
+                        Text(
                           "学院:${data["college"]}",
                           style: normalTextStyle,
                         ),
@@ -72,6 +76,10 @@ class ProcessingForm extends StatelessWidget {
                         ),
                         Text(
                           "申请出校理由:${data["reason"]}",
+                          style: normalTextStyle,
+                        ),
+                        Text(
+                          "是否离京:否",
                           style: normalTextStyle,
                         ),
                         Text(

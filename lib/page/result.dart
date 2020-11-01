@@ -51,7 +51,7 @@ class _PageResultState extends State<PageResult>
                 children: [
                   ProcessingForm(widget.data),
                   FormPreview(),
-                  ViewProcess(),
+                  ViewProcess(widget.data),
                 ],
               ),
             ),

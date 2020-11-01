@@ -43,6 +43,12 @@ class _PageFormState extends State<PageForm> {
                 ),
                 TextFormField(
                   onSaved: (v) {
+                    _data["sno"] = v;
+                  },
+                  decoration: InputDecoration(labelText: "学号"),
+                ),
+                TextFormField(
+                  onSaved: (v) {
                     _data["place"] = v;
                   },
                   decoration: InputDecoration(labelText: "地点"),
@@ -126,21 +132,19 @@ class _PageFormState extends State<PageForm> {
                   },
                   decoration: InputDecoration(labelText: "备注"),
                 ),
-                FlatButton(
-                  child: Text("生成"),
-                  onPressed: () {
-                    var form = _formKey.currentState;
-                    form.save();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PageResult(_data)));
-                  },
-                )
               ],
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.airplanemode_active),
+        onPressed: () {
+          var form = _formKey.currentState;
+          form.save();
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => PageResult(_data)));
+        },
       ),
     );
   }
