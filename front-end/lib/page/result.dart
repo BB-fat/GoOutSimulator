@@ -49,7 +49,12 @@ class _PageResultState extends State<PageResult>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  ProcessingForm(widget.data),
+                  ProcessingForm(
+                    data: widget.data,
+                    previewForm: () {
+                      _tabController.animateTo(1);
+                    },
+                  ),
                   FormPreview(),
                   ViewProcess(widget.data),
                 ],
