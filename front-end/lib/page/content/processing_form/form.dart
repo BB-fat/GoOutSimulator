@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'action_cell.dart';
+import 'bar_code.dart';
+import 'subsequent_processing.dart';
 
 class ProcessingForm extends StatefulWidget {
   final Map<String, String> data;
@@ -22,6 +25,8 @@ class _ProcessingFormState extends State<ProcessingForm> {
   String _formatTime(DateTime time) => time.toUtc().toString().split(".")[0];
 
   bool showBarCode = false;
+
+  bool showSubsequentProcessingView = false;
 
   @override
   Widget build(BuildContext context) {
@@ -254,7 +259,11 @@ class _ProcessingFormState extends State<ProcessingForm> {
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.normal),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          showSubsequentProcessingView = true;
+                        });
+                      },
                     ),
                   )
                 ],
@@ -270,79 +279,17 @@ class _ProcessingFormState extends State<ProcessingForm> {
                   });
                 },
               )
+            : Container(),
+        showSubsequentProcessingView
+            ? SubsequentProcessingFloatingView(
+                tapClose: () {
+                  setState(() {
+                    showSubsequentProcessingView = false;
+                  });
+                },
+              )
             : Container()
       ],
-    );
-  }
-}
-
-class ActionCell extends StatelessWidget {
-  final String text;
-  final Function action;
-
-  ActionCell({this.text, this.action});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      child: FlatButton(
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        height: 36,
-        onPressed: action,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              text,
-              style: TextStyle(
-                  color: Color(0xff626985),
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal),
-            ),
-            Image.asset(
-              "image/arrow.png",
-              width: 10,
-              height: 10,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class BarCode extends StatelessWidget {
-  final Function tapClose;
-  BarCode({this.tapClose});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
-      color: Colors.black45,
-      child: Column(
-        children: [
-          Image.asset(
-            "image/bar_code.jpg",
-            width: MediaQuery.of(context).size.width,
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            color: Colors.white,
-            child: RaisedButton(
-              color: Colors.redAccent,
-              child: Text(
-                "关闭",
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: tapClose,
-            ),
-          )
-        ],
-      ),
     );
   }
 }

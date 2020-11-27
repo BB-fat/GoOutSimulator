@@ -52,6 +52,7 @@ flutter:
     - image/form.jpeg
     - image/process.jpeg
     - image/bar_code.jpg
+    - image/subsequent_processing.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

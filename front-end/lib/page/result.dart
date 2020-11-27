@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'content/form_preview.dart';
-import 'content/processing_form.dart';
+import 'content/processing_form/form.dart';
 import 'content/view_process.dart';
 
 class PageResult extends StatefulWidget {
