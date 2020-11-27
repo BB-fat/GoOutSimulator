@@ -33,8 +33,12 @@ class _PageFormState extends State<PageForm> {
             key: formKey,
             child: Column(
               children: [
-                SizedBox(
-                  height: 150,
+                Container(
+                  child: Text(
+                    "出校模拟器",
+                    style: TextStyle(color: Colors.blueAccent, fontSize: 28),
+                  ),
+                  margin: EdgeInsets.symmetric(vertical: 60),
                 ),
                 Text(
                   "必填",

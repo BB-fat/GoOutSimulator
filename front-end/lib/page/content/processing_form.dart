@@ -17,6 +17,9 @@ class _ProcessingFormState extends State<ProcessingForm> {
       TextStyle(color: Color(0xffcecece), fontSize: 12);
 
   final nowDate = DateTime.now();
+  final applyTime = DateTime.now().add(Duration(days: -1));
+
+  String _formatTime(DateTime time) => time.toUtc().toString().split(".")[0];
 
   bool showBarCode = false;
 
@@ -58,7 +61,7 @@ class _ProcessingFormState extends State<ProcessingForm> {
                                   style: activeTextStyle,
                                 ),
                                 TextSpan(
-                                    text: " ${widget.data["out_time"]}",
+                                    text: _formatTime(applyTime),
                                     style: normalTextStyle)
                               ]),
                             ),
@@ -219,7 +222,9 @@ class _ProcessingFormState extends State<ProcessingForm> {
                                 width: 10,
                               ),
                               Text(
-                                "${nowDate.year}-${nowDate.month}-${nowDate.day} 06:${widget.data["approve_time"]}",
+                                _formatTime(applyTime.add(Duration(
+                                    minutes: int.parse(
+                                        widget.data["approve_time"])))),
                                 style: normalTextStyle,
                               ),
                             ],
