@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class SubsequentProcessingFloatingView extends StatelessWidget {
+class SubsequentProcessingFloatingLayer extends StatelessWidget {
   final Function tapClose;
-  SubsequentProcessingFloatingView({this.tapClose});
+  SubsequentProcessingFloatingLayer({this.tapClose});
 
   @override
   Widget build(BuildContext context) {

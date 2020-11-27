@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'action_cell.dart';
 import 'bar_code.dart';
 import 'subsequent_processing.dart';
+import 'teacher_card.dart';
 
 class ProcessingForm extends StatefulWidget {
   final Map<String, String> data;
@@ -27,6 +28,8 @@ class _ProcessingFormState extends State<ProcessingForm> {
   bool showBarCode = false;
 
   bool showSubsequentProcessingView = false;
+
+  bool showTeacherCard = false;
 
   @override
   Widget build(BuildContext context) {
@@ -174,21 +177,28 @@ class _ProcessingFormState extends State<ProcessingForm> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                radius: 10,
-                                backgroundImage:
-                                    AssetImage("image/avatar.jpeg"),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                widget.data["teacher"],
-                                style: activeTextStyle,
-                              ),
-                            ],
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                showTeacherCard = true;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 10,
+                                  backgroundImage:
+                                      AssetImage("image/avatar.jpeg"),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  widget.data["teacher"],
+                                  style: activeTextStyle,
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(
                             width: 50,
@@ -281,10 +291,20 @@ class _ProcessingFormState extends State<ProcessingForm> {
               )
             : Container(),
         showSubsequentProcessingView
-            ? SubsequentProcessingFloatingView(
+            ? SubsequentProcessingFloatingLayer(
                 tapClose: () {
                   setState(() {
                     showSubsequentProcessingView = false;
+                  });
+                },
+              )
+            : Container(),
+        showTeacherCard
+            ? TeacherCardLayer(
+                teacherName: widget.data["teacher"],
+                tapClose: () {
+                  setState(() {
+                    showTeacherCard = false;
                   });
                 },
               )
