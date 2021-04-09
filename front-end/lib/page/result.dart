@@ -5,7 +5,7 @@ import 'content/processing_form/form.dart';
 import 'content/view_process.dart';
 
 class PageResult extends StatefulWidget {
-  final Map<String, String> data;
+  final Map<String, dynamic> data;
 
   PageResult(this.data);
 

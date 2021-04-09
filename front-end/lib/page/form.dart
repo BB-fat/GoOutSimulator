@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:go_out_simulator/page/logic/hive_helper.dart';
 import 'package:go_out_simulator/page/result.dart';
 import 'dart:math';
 
@@ -15,9 +18,15 @@ class _PageFormState extends State<PageForm> {
   final TextStyle titleTextStyle =
       TextStyle(fontSize: 24, color: Colors.black, fontWeight: FontWeight.bold);
 
-  Map<String, String> data = {};
+  Map<String, dynamic> data;
+
+  String get _kDataCache => "DataCache";
+
   @override
   void initState() {
+    data = HiveHelper.instance.defaultBox.get(_kDataCache) == null
+        ? {}
+        : jsonDecode(HiveHelper.instance.defaultBox.get(_kDataCache));
     data["approve_time"] = "$approveTime";
     super.initState();
   }
@@ -38,31 +47,36 @@ class _PageFormState extends State<PageForm> {
                     "出校模拟器",
                     style: TextStyle(color: Colors.blueAccent, fontSize: 28),
                   ),
-                  margin: EdgeInsets.symmetric(vertical: 60),
+                  margin: EdgeInsets.symmetric(vertical: 30),
                 ),
+                Text("新功能：缓存上一次填写的内容"),
                 Text(
                   "必填",
                   style: titleTextStyle,
                 ),
                 TextFormField(
+                  initialValue: data["name"],
                   onSaved: (v) {
                     data["name"] = v;
                   },
                   decoration: InputDecoration(labelText: "姓名"),
                 ),
                 TextFormField(
+                  initialValue: data["sno"],
                   onSaved: (v) {
                     data["sno"] = v;
                   },
                   decoration: InputDecoration(labelText: "学号"),
                 ),
                 TextFormField(
+                  initialValue: data["place"],
                   onSaved: (v) {
                     data["place"] = v;
                   },
                   decoration: InputDecoration(labelText: "地点"),
                 ),
                 TextFormField(
+                  initialValue: data["teacher"],
                   onSaved: (v) {
                     data["teacher"] = v;
                   },
@@ -76,6 +90,7 @@ class _PageFormState extends State<PageForm> {
                   style: titleTextStyle,
                 ),
                 TextFormField(
+                  initialValue: data["college"],
                   onSaved: (v) {
                     if (v.length == 0) {
                       data["college"] = "信息学院";
@@ -86,6 +101,7 @@ class _PageFormState extends State<PageForm> {
                   decoration: InputDecoration(labelText: "学院"),
                 ),
                 TextFormField(
+                  initialValue: data["class"],
                   onSaved: (v) {
                     if (v.length == 0) {
                       data["class"] = "电信16-1";
@@ -96,6 +112,7 @@ class _PageFormState extends State<PageForm> {
                   decoration: InputDecoration(labelText: "班级"),
                 ),
                 TextFormField(
+                  initialValue: data["phone"],
                   onSaved: (v) {
                     if (v.length == 0) {
                       data["phone"] = "13819394856";
@@ -106,6 +123,7 @@ class _PageFormState extends State<PageForm> {
                   decoration: InputDecoration(labelText: "手机号"),
                 ),
                 TextFormField(
+                  initialValue: data["reason"],
                   onSaved: (v) {
                     if (v.length == 0) {
                       data["reason"] = "办事";
@@ -119,7 +137,7 @@ class _PageFormState extends State<PageForm> {
                   onSaved: (v) {
                     if (v.length == 0) {
                       data["out_time"] =
-                          "${nowDate.year}-${nowDate.month}-${nowDate.day} 06:00";
+                          "${nowDate.year}-${nowDate.month}-${nowDate.day} ${nowDate.hour}:00";
                     } else {
                       data["out_time"] = v;
                     }
@@ -138,6 +156,7 @@ class _PageFormState extends State<PageForm> {
                   decoration: InputDecoration(labelText: "返回时间"),
                 ),
                 TextFormField(
+                  initialValue: data["remark"],
                   onSaved: (v) {
                     if (v.length == 0) {
                       data["remark"] = "无";
@@ -157,6 +176,7 @@ class _PageFormState extends State<PageForm> {
         onPressed: () {
           var form = formKey.currentState;
           form.save();
+          HiveHelper.instance.defaultBox.put(_kDataCache, jsonEncode(data));
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => PageResult(data)));
         },

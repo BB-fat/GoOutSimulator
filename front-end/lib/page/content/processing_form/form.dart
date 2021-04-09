@@ -5,7 +5,7 @@ import 'subsequent_processing.dart';
 import 'teacher_card.dart';
 
 class ProcessingForm extends StatefulWidget {
-  final Map<String, String> data;
+  final Map<String, dynamic> data;
   final Function previewForm;
   ProcessingForm({this.data, this.previewForm});
   @override

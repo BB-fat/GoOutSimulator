@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_out_simulator/page/form.dart';
+import 'package:go_out_simulator/page/logic/hive_helper.dart';
 
-void main() {
+Future main() async {
+  await HiveHelper.instance.initHive();
   runApp(MyApp());
 }
 

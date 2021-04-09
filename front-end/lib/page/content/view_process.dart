@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ViewProcess extends StatelessWidget {
-  final Map<String, String> data;
+  final Map<String, dynamic> data;
 
   ViewProcess(this.data);
 
